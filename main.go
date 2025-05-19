@@ -28,6 +28,7 @@ func main() {
 }
 
 // In this section we will just declare some basic util functions to aid file and directory management.
+// Boilerplate
 func checkIfFileExists(filename string) bool {
 	_, err := os.Stat(filename)
 	if os.IsNotExist(err) {
