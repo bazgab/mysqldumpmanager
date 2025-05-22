@@ -2,33 +2,37 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 )
 
 func main() {
+
 	fmt.Println()
 	fmt.Println(os.Getpid())
-	err := os.Mkdir("testdir/anotherdir", 0777)
-	if err != nil && !os.IsExist(err) {
-		log.Fatal(err)
+	/*
+		err := os.Mkdir("testdir/anotherdir", 0777)
+		if err != nil && !os.IsExist(err) {
+			log.Fatal(err)
 
+		}
+	*/
+
+	//Just testing main functionality
+	//TODO: This is a very messy way of scripting things, clear up.
+	fmt.Println("Checking for testfile.txt...")
+	if checkIfFileExists("testfile.txt") == false {
+		fmt.Println("Testfile.txt does not exist, creating...")
+		createFile("testfile.txt")
 	}
-
-	//Right now only using this sort of stuff for testing.
-
-	//TODO: clear this up later for actual implementation.
-	if checkIfFileExists("testdir/anotherdir/test.txt") == false {
-		filename := "testdir/anotherdir/test.txt"
-		fmt.Printf("%s: file does not exist\n", filename)
-	} else {
-		fmt.Println("file exists")
+	fmt.Println("Checking again for Testfile.txt...")
+	if checkIfFileExists("testfile.txt") == true {
+		fmt.Println("Found testfile.txt")
 	}
 
 }
 
 // In this section we will just declare some basic util functions to aid file and directory management.
-// Boilerplate
+// Check if file exists
 func checkIfFileExists(filename string) bool {
 	_, err := os.Stat(filename)
 	if os.IsNotExist(err) {
@@ -36,3 +40,15 @@ func checkIfFileExists(filename string) bool {
 	}
 	return true
 }
+
+// Create File:
+// This is gonna be used for creating a /etc/mysqldumpmanager file for storing .sql dumps
+func createFile(filename string) {
+	_, err := os.Create(filename)
+	if err != nil {
+		return
+	}
+
+}
+
+//
