@@ -53,3 +53,12 @@ func createFile(filename string) {
 
 //Delete file:
 // Used for deleting dump files
+
+func deleteFile(filename string) {
+	err := os.Remove(filename)
+	if err != nil {
+		return
+	} else {
+		fmt.Println("Deleted testfile.txt")
+	}
+}
