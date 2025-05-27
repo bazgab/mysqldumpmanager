@@ -51,4 +51,5 @@ func createFile(filename string) {
 
 }
 
-//
+//Delete file:
+// Used for deleting dump files
