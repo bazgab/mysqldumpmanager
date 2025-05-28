@@ -10,20 +10,18 @@ func main() {
 
 	fmt.Println()
 	fmt.Println(os.Getpid())
-	/*
-		err := os.Mkdir("testdir/anotherdir", 0777)
-		if err != nil && !os.IsExist(err) {
-			log.Fatal(err)
-
-		}
-	*/
 
 	//Just testing main functionality
 	//TODO: This is a very messy way of scripting things, clear up.
 	fmt.Println("Checking for testfile.txt...")
 	if checkIfFileExists("testfile.txt") == false {
 		fmt.Println("Testfile.txt does not exist, creating...")
-		createFile("testfile.txt")
+		//	createFile("testfile.txt")
+		filename := "testfile.txt"
+		content := "This is the text content for testfile.txt\n" +
+			"With multiple lines\n"
+
+		createFileWithContent(filename, content)
 	}
 	fmt.Println("Checking again for Testfile.txt...")
 	if checkIfFileExists("testfile.txt") == true {
@@ -44,7 +42,8 @@ func checkIfFileExists(filename string) bool {
 
 // Create File:
 // This is going to be used for creating a /etc/mysqldumpmanager file for storing .sql dumps
-func create_file_with_content(filename string, content string) {
+// and to create the file for storing MySQL credentials so we don't need to prompt password everytime
+func createFileWithContent(filename string, content string) {
 	f, err := os.Create(filename)
 	if err != nil {
 		log.Fatal(err)
