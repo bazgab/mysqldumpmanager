@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 )
 
@@ -42,13 +43,16 @@ func checkIfFileExists(filename string) bool {
 }
 
 // Create File:
-// This is gonna be used for creating a /etc/mysqldumpmanager file for storing .sql dumps
-func createFile(filename string) {
-	_, err := os.Create(filename)
+// This is going to be used for creating a /etc/mysqldumpmanager file for storing .sql dumps
+func create_file_with_content(filename string, content string) {
+	f, err := os.Create(filename)
 	if err != nil {
-		return
+		log.Fatal(err)
 	}
-
+	_, err = f.WriteString(content)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 //Delete file:
