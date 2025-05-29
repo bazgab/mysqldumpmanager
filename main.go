@@ -4,12 +4,18 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
 )
 
 func main() {
 
 	fmt.Println()
 	fmt.Println(os.Getpid())
+	fmt.Println()
+	// TODO: Fix this
+	command := "mkdir testdir"
+	executeCommand(command)
+	fmt.Println("===================")
 
 	//Just testing main functionality
 	//TODO: This is a very messy way of scripting things, clear up.
@@ -54,7 +60,7 @@ func createFileWithContent(filename string, content string) {
 	}
 }
 
-//Delete file:
+// Delete file:
 // Used for deleting dump files
 
 func deleteFile(filename string) {
@@ -64,4 +70,15 @@ func deleteFile(filename string) {
 	} else {
 		fmt.Println("Deleted testfile.txt")
 	}
+}
+
+// Execute command
+// This will be used to execute the mysqldump command to create new dumps
+func executeCommand(command string) {
+	cmd := exec.Command(command)
+	err := cmd.Run()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println("Executed command: " + command)
 }
