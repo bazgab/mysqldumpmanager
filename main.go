@@ -13,8 +13,8 @@ func main() {
 	fmt.Println(os.Getpid())
 	fmt.Println()
 	// TODO: Fix this
-	command := "mkdir testdir"
-	executeCommand(command)
+
+	executeCommand()
 	fmt.Println("===================")
 
 	//Just testing main functionality
@@ -74,11 +74,11 @@ func deleteFile(filename string) {
 
 // Execute command
 // This will be used to execute the mysqldump command to create new dumps
-func executeCommand(command string) {
-	cmd := exec.Command(command)
+func executeCommand() {
+	cmd := exec.Command("mkdir", "testdir")
 	err := cmd.Run()
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("Executed command: " + command)
+	fmt.Println("Executed command: mkdir testdir ")
 }
