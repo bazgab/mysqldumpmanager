@@ -12,7 +12,6 @@ func main() {
 	fmt.Println()
 	fmt.Println(os.Getpid())
 	fmt.Println()
-	// TODO: Fix this
 
 	executeCommand()
 	fmt.Println("===================")
