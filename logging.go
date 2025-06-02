@@ -6,11 +6,11 @@ import (
 	"log"
 )
 
-// TODO: Fix this
+// Log INFO Block
 func loginfo(info string) {
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "INFO: ", log.Lshortfile)
+		logger = log.New(&buf, "[INFO] ", log.Ldate|log.Ltime|log.Llongfile)
 	)
 
 	err := logger.Output(2, info)
@@ -21,8 +21,32 @@ func loginfo(info string) {
 	fmt.Print(&buf)
 }
 
-// using this for testing
-func main() {
-	info := "Hello World!"
-	loginfo(info)
+// Log WARN Block
+func logwarn(warn string) {
+	var (
+		buf    bytes.Buffer
+		logger = log.New(&buf, "[WARN] ", log.Ldate|log.Ltime|log.Llongfile)
+	)
+
+	err := logger.Output(2, warn)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Print(&buf)
+}
+
+// Log ERROR Block
+func logerror(error string) {
+	var (
+		buf    bytes.Buffer
+		logger = log.New(&buf, "[ERROR] ", log.Ldate|log.Ltime|log.Llongfile)
+	)
+
+	err := logger.Output(2, error)
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	fmt.Print(&buf)
 }
