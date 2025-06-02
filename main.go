@@ -15,8 +15,12 @@ func main() {
 
 	executeCommand()
 	fmt.Println("===================")
-	loggingInfoForTest := "test"
+	loggingInfoForTest := "Info test"
+	loggingWarnForTest := "Warn test"
+	loggingErrorForTest := "Error test"
 	loginfo(loggingInfoForTest)
+	logwarn(loggingWarnForTest)
+	logerror(loggingErrorForTest)
 	//Just testing main functionality
 	//TODO: This is a very messy way of scripting things, clear up.
 	fmt.Println("Checking for testfile.txt...")

@@ -10,7 +10,7 @@ import (
 func loginfo(info string) {
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[INFO] ", log.Ldate|log.Ltime|log.Llongfile)
+		logger = log.New(&buf, "[INFO] ", log.Ldate|log.Ltime)
 	)
 
 	err := logger.Output(2, info)
@@ -25,7 +25,7 @@ func loginfo(info string) {
 func logwarn(warn string) {
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[WARN] ", log.Ldate|log.Ltime|log.Llongfile)
+		logger = log.New(&buf, "[WARN] ", log.Ldate|log.Ltime)
 	)
 
 	err := logger.Output(2, warn)
@@ -40,7 +40,7 @@ func logwarn(warn string) {
 func logerror(error string) {
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[ERROR] ", log.Ldate|log.Ltime|log.Llongfile)
+		logger = log.New(&buf, "[ERROR] ", log.Ldate|log.Ltime)
 	)
 
 	err := logger.Output(2, error)
