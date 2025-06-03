@@ -56,7 +56,7 @@ func checkIfFileExists(filename string) bool {
 func createFileWithContent(filename string, content string) {
 	f, err := os.Create(filename)
 	if err != nil {
-		log.Fatal(err)
+		logerror(err.Error())
 	}
 	_, err = f.WriteString(content)
 	if err != nil {
