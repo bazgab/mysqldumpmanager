@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"os/exec"
 )
@@ -40,6 +39,8 @@ func main() {
 
 }
 
+// TODO: We need to write every logging action to a log file, not just print out the error in the console
+
 // In this section we will just declare some basic util functions to aid file and directory management.
 // Check if file exists
 func checkIfFileExists(filename string) bool {
@@ -60,7 +61,7 @@ func createFileWithContent(filename string, content string) {
 	}
 	_, err = f.WriteString(content)
 	if err != nil {
-		log.Fatal(err)
+		logerror(err.Error())
 	}
 }
 
@@ -70,7 +71,7 @@ func createFileWithContent(filename string, content string) {
 func deleteFile(filename string) {
 	err := os.Remove(filename)
 	if err != nil {
-		return
+		logerror(err.Error())
 	} else {
 		fmt.Println("Deleted testfile.txt")
 	}
@@ -82,7 +83,7 @@ func executeCommand() {
 	cmd := exec.Command("mkdir", "testdir")
 	err := cmd.Run()
 	if err != nil {
-		log.Fatal(err)
+		logerror(err.Error())
 	}
 	fmt.Println("Executed command: mkdir testdir ")
 }
