@@ -12,7 +12,8 @@ func main() {
 	fmt.Println(os.Getpid())
 	fmt.Println()
 
-	executeCommand()
+	c := []string{"mkdir", "testdir"}
+	executeCommand(c)
 	fmt.Println("===================")
 	loggingInfoForTest := "Info test"
 	loggingWarnForTest := "Warn test"
@@ -22,7 +23,7 @@ func main() {
 	logerror(loggingErrorForTest)
 	//Just testing main functionality
 	//TODO: This is a very messy way of scripting things, clear up.
-	fmt.Println("Checking for testfile.txt...")
+	/*fmt.Println("Checking for testfile.txt...")
 	if checkIfFileExists("testfile.txt") == false {
 		fmt.Println("Testfile.txt does not exist, creating...")
 		//	createFile("testfile.txt")
@@ -35,7 +36,7 @@ func main() {
 	fmt.Println("Checking again for Testfile.txt...")
 	if checkIfFileExists("testfile.txt") == true {
 		fmt.Println("Found testfile.txt")
-	}
+	}*/
 
 }
 
@@ -79,11 +80,15 @@ func deleteFile(filename string) {
 
 // Execute command
 // This will be used to execute the mysqldump command to create new dumps
-func executeCommand() {
-	cmd := exec.Command("mkdir", "testdir")
-	err := cmd.Run()
+func executeCommand(cmd []string) {
+
+	r := exec.Command(cmd[0], cmd[1:]...)
+	loginfo(r.String())
+	err := r.Run()
 	if err != nil {
 		logerror(err.Error())
+		m := "Command could not be executed, this can happen if the directory is already created on your system"
+		logerror(m)
 	}
 	fmt.Println("Executed command: mkdir testdir ")
 }
