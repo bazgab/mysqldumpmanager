@@ -21,6 +21,11 @@ func main() {
 	loginfo(loggingInfoForTest)
 	logwarn(loggingWarnForTest)
 	logerror(loggingErrorForTest)
+	fmt.Println("===================")
+	//Checking if deleteFile function will delete directory
+	deleteFile("testdir")
+	// Yes it will.
+
 	//Just testing main functionality
 	//TODO: This is a very messy way of scripting things, clear up.
 	/*fmt.Println("Checking for testfile.txt...")
@@ -72,9 +77,11 @@ func createFileWithContent(filename string, content string) {
 func deleteFile(filename string) {
 	err := os.Remove(filename)
 	if err != nil {
-		logerror(err.Error())
+		m := ": File could not be deleted, check if file exists"
+		logerror(err.Error() + m)
 	} else {
-		fmt.Println("Deleted testfile.txt")
+		m2 := "File successfully deleted"
+		loginfo(m2)
 	}
 }
 
@@ -86,9 +93,8 @@ func executeCommand(cmd []string) {
 	loginfo(r.String())
 	err := r.Run()
 	if err != nil {
-		logerror(err.Error())
-		m := "Command could not be executed, this can happen if the directory is already created on your system"
-		logerror(m)
+		m := ": Command could not be executed, this can happen if the directory is already created on your system"
+		logerror(err.Error() + m)
 	}
 	fmt.Println("Executed command: mkdir testdir ")
 }
