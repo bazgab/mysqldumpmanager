@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"os/exec"
+	"strings"
 )
 
 func main() {
@@ -23,6 +24,7 @@ func main() {
 	logError(loggingErrorForTest)
 	fmt.Println("===================")
 	//Checking if deleteFile function will delete directory
+	fmt.Println("Deleting Testdir to not hog tests")
 	deleteFile("testdir")
 	// Yes it will.
 
@@ -96,5 +98,8 @@ func executeCommand(cmd []string) {
 		m := ": Command could not be executed, this can happen if the directory is already created on your system"
 		logError(err.Error() + m)
 	}
-	fmt.Println("Executed command: mkdir testdir ")
+	cmdStr := strings.Join(cmd, " ")
+	m := "Executed command: " + cmdStr
+	logInfo(r.String())
+	logInfo(m)
 }
