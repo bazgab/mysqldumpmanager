@@ -18,9 +18,9 @@ func main() {
 	loggingInfoForTest := "Info test"
 	loggingWarnForTest := "Warn test"
 	loggingErrorForTest := "Error test"
-	loginfo(loggingInfoForTest)
-	logwarn(loggingWarnForTest)
-	logerror(loggingErrorForTest)
+	logInfo(loggingInfoForTest)
+	logWarn(loggingWarnForTest)
+	logError(loggingErrorForTest)
 	fmt.Println("===================")
 	//Checking if deleteFile function will delete directory
 	deleteFile("testdir")
@@ -63,11 +63,11 @@ func checkIfFileExists(filename string) bool {
 func createFileWithContent(filename string, content string) {
 	f, err := os.Create(filename)
 	if err != nil {
-		logerror(err.Error())
+		logError(err.Error())
 	}
 	_, err = f.WriteString(content)
 	if err != nil {
-		logerror(err.Error())
+		logError(err.Error())
 	}
 }
 
@@ -78,10 +78,10 @@ func deleteFile(filename string) {
 	err := os.Remove(filename)
 	if err != nil {
 		m := ": File could not be deleted, check if file exists"
-		logerror(err.Error() + m)
+		logError(err.Error() + m)
 	} else {
 		m2 := "File successfully deleted"
-		loginfo(m2)
+		logInfo(m2)
 	}
 }
 
@@ -90,11 +90,11 @@ func deleteFile(filename string) {
 func executeCommand(cmd []string) {
 
 	r := exec.Command(cmd[0], cmd[1:]...)
-	loginfo(r.String())
+	logInfo(r.String())
 	err := r.Run()
 	if err != nil {
 		m := ": Command could not be executed, this can happen if the directory is already created on your system"
-		logerror(err.Error() + m)
+		logError(err.Error() + m)
 	}
 	fmt.Println("Executed command: mkdir testdir ")
 }

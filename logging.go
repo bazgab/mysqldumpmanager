@@ -7,10 +7,10 @@ import (
 )
 
 // Log INFO Block
-func loginfo(info string) {
+func logInfo(info string) {
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[INFO] ", log.Ldate|log.Ltime)
+		logger = log.New(&buf, "[INFO] ", log.Ltime|log.Lmsgprefix)
 	)
 
 	err := logger.Output(2, info)
@@ -22,10 +22,10 @@ func loginfo(info string) {
 }
 
 // Log WARN Block
-func logwarn(warn string) {
+func logWarn(warn string) {
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[WARN] ", log.Ldate|log.Ltime)
+		logger = log.New(&buf, "[WARN] ", log.Ltime|log.Lmsgprefix)
 	)
 
 	err := logger.Output(2, warn)
@@ -37,10 +37,10 @@ func logwarn(warn string) {
 }
 
 // Log ERROR Block
-func logerror(error string) {
+func logError(error string) {
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[ERROR] ", log.Ldate|log.Ltime)
+		logger = log.New(&buf, "[ERROR] ", log.Ltime|log.Lmsgprefix)
 	)
 
 	err := logger.Output(2, error)
