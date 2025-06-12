@@ -3,14 +3,19 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"github.com/fatih/color"
 	"log"
 )
 
 // Log INFO Block
 func logInfo(info string) {
+
+	c := color.New(color.FgBlue, color.Bold).SprintFunc()
+	p := c("[INFO] ")
+
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[INFO] ", log.Ltime|log.Lmsgprefix)
+		logger = log.New(&buf, p, log.Ltime|log.Lmsgprefix)
 	)
 
 	err := logger.Output(2, info)
@@ -23,9 +28,13 @@ func logInfo(info string) {
 
 // Log WARN Block
 func logWarn(warn string) {
+
+	c := color.New(color.FgYellow, color.Bold).SprintFunc()
+	p := c("[WARN] ")
+
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[WARN] ", log.Ltime|log.Lmsgprefix)
+		logger = log.New(&buf, p, log.Ltime|log.Lmsgprefix)
 	)
 
 	err := logger.Output(2, warn)
@@ -38,9 +47,13 @@ func logWarn(warn string) {
 
 // Log ERROR Block
 func logError(error string) {
+
+	c := color.New(color.FgRed, color.Bold).SprintFunc()
+	p := c("[ERROR] ")
+
 	var (
 		buf    bytes.Buffer
-		logger = log.New(&buf, "[ERROR] ", log.Ltime|log.Lmsgprefix)
+		logger = log.New(&buf, p, log.Ltime|log.Lmsgprefix)
 	)
 
 	err := logger.Output(2, error)

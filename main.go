@@ -7,6 +7,7 @@ import (
 func main() {
 
 	fmt.Println("ENTRY POINT: ")
+
 	c := []string{"mkdir", "testdir"}
 	executeCommand(c)
 	fmt.Println("===================")
