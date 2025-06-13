@@ -1,27 +1,23 @@
 /*
-Copyright © 2025 NAME HERE <EMAIL ADDRESS>
-
+This is the main entry point for the cobra library and serves as the CLI client manager
 */
+
 package cmd
 
 import (
-	"os"
-
 	"github.com/spf13/cobra"
+	"os"
 )
-
-
 
 // rootCmd represents the base command when called without any subcommands
 var rootCmd = &cobra.Command{
 	Use:   "mysqldumpmanager",
-	Short: "A brief description of your application",
-	Long: `A longer description that spans multiple lines and likely contains
-examples and usage of using your application. For example:
+	Short: "A lightweight application to create, list and delete MySQL backups",
+	Long: `MySQLDumpManager is a CLI client/tool to create, list and delete MySQL backups
+through the widely used out-of-the-box client utility mysqldump.
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+Further information regarding mysqldump's functionality can be 
+read on the official documentation at: https://dev.mysql.com/doc/refman/8.4/en/mysqldump.html`,
 	// Uncomment the following line if your bare application
 	// has an action associated with it:
 	// Run: func(cmd *cobra.Command, args []string) { },
@@ -47,5 +43,3 @@ func init() {
 	// when this action is called directly.
 	rootCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }
-
-
