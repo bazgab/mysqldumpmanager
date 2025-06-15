@@ -17,7 +17,7 @@ func checkIfFileExists(filename string) bool {
 }
 
 // Create File:
-// This is going to be used for creating a /etc/mysqldumpmanager file for storing .sql dumps
+// This is going to be used for creating a /etc/bum file for storing .sql dumps
 // and to create the file for storing MySQL credentials so we don't need to prompt password everytime
 func createFileWithContent(filename string, content string) {
 	f, err := os.Create(filename)
