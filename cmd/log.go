@@ -1,8 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-	"github.com/fatih/color"
 	"github.com/spf13/cobra"
 )
 
@@ -21,19 +19,21 @@ var loggingCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(loggingCmd)
-	loggingCmd.Flags().StringP("name", "N", "hello", "Input name to be displayed")
+	loggingCmd.Flags().StringP("name", "N", "", "Input name to be displayed (required)")
+	err := loggingCmd.MarkFlagRequired("name")
+	if err != nil {
+		return
+	}
 
 }
 
 func loggingCmdFunc(cmd *cobra.Command, args []string) {
 	name, err := cmd.Flags().GetString("name")
 	if err != nil {
-		c := color.New(color.FgRed, color.Bold).SprintFunc()
-		p := c("[ERROR] ")
-		fmt.Println(p, "Command failed to execute")
+		m := "Failed to execute command " + name
+		logError(m)
 	}
 	m := "Command executed successfully"
 	logInfo(m)
 	logInfo("Logged: " + name)
-
 }
