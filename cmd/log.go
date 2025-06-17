@@ -32,10 +32,8 @@ func loggingCmdFunc(cmd *cobra.Command, args []string) {
 		p := c("[ERROR] ")
 		fmt.Println(p, "Command failed to execute")
 	}
-
-	c := color.New(color.FgBlue, color.Bold).SprintFunc()
-	p := c("[INFO] ")
-	fmt.Println(p, "Command successfully executed.")
-	fmt.Printf("%s Logged: %s\n", p, name)
+	m := "Command executed successfully"
+	logInfo(m)
+	logInfo("Logged: " + name)
 
 }
