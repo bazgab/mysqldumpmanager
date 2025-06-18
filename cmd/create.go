@@ -18,7 +18,11 @@ By default, dumps are located in /etc/mysqldumpmanager/dumps/`,
 
 func init() {
 	rootCmd.AddCommand(createCmd)
-	createCmd.Flags().StringP("file", "F", "sample.sql", "file to be created")
+	createCmd.Flags().StringP("file", "F", "", "file name to write dump to (required)")
+	err := createCmd.MarkFlagRequired("file")
+	if err != nil {
+		logError(err.Error())
+	}
 }
 
 func createCmdFunc(cmd *cobra.Command, args []string) {
