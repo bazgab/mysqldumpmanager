@@ -45,8 +45,7 @@ func logWarn(warn string) {
 	fmt.Print(&buf)
 }
 
-// Log ERROR Block
-func logError(error string) {
+func LogError(error string) {
 
 	c := color.New(color.FgRed, color.Bold).SprintFunc()
 	p := c("[ERROR] ")

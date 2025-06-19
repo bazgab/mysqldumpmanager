@@ -22,11 +22,11 @@ func checkIfFileExists(filename string) bool {
 func createFileWithContent(filename string, content string) {
 	f, err := os.Create(filename)
 	if err != nil {
-		logError(err.Error())
+		LogError(err.Error())
 	}
 	_, err = f.WriteString(content)
 	if err != nil {
-		logError(err.Error())
+		LogError(err.Error())
 	}
 }
 
@@ -37,7 +37,7 @@ func deleteFile(filename string) {
 	err := os.Remove(filename)
 	if err != nil {
 		m := ": File could not be deleted, check if file exists"
-		logError(err.Error() + m)
+		LogError(err.Error() + m)
 	} else {
 		m2 := "File successfully deleted"
 		logInfo(m2)
@@ -52,7 +52,7 @@ func executeCommand(cmd []string) {
 	err := r.Run()
 	if err != nil {
 		m := ": Command could not be executed, this can happen if the directory is already created on your system"
-		logError(err.Error() + m)
+		LogError(err.Error() + m)
 	}
 	cmdStr := strings.Join(cmd, " ")
 	m := "Executed command successfully: " + "\"" + cmdStr + "\""

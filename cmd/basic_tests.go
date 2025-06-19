@@ -19,7 +19,7 @@ func main() {
 
 	logInfo(loggingInfoForTest)
 	logWarn(loggingWarnForTest)
-	logError(loggingErrorForTest)
+	LogError(loggingErrorForTest)
 	fmt.Println("===================")
 
 	//Checking if deleteFile function will delete directory

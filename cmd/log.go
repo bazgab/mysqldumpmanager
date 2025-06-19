@@ -31,7 +31,7 @@ func loggingCmdFunc(cmd *cobra.Command, args []string) {
 	name, err := cmd.Flags().GetString("name")
 	if err != nil {
 		m := "Failed to execute command " + name
-		logError(m)
+		LogError(m)
 	}
 	m := "Command executed successfully"
 	logInfo(m)

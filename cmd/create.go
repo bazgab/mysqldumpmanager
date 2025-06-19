@@ -21,7 +21,7 @@ func init() {
 	createCmd.Flags().StringP("file", "F", "", "file name to write dump to (required)")
 	err := createCmd.MarkFlagRequired("file")
 	if err != nil {
-		logError(err.Error())
+		LogError(err.Error())
 	}
 }
 
