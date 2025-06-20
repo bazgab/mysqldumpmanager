@@ -30,3 +30,10 @@ func CreateMySQLDumpManagerDirectory() {
 		cmd.LogInfo("Success - /etc/mysqldumpmanager directory exists")
 	}
 }
+
+func createConfigurationFile() {
+	cmd.LogInfo("Creating configuration file...")
+	f := "/etc/mysqldumpmanager/conf.yaml"
+	c := "sample"
+	cmd.CreateFileWithContent(f, c)
+}
