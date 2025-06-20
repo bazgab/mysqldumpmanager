@@ -22,10 +22,11 @@ func CreateMySQLDumpManagerDirectory() {
 	// First time checking if directory was created successfully
 	if _, err := os.Stat("/etc/mysqldumpmanager"); err != nil {
 		if os.IsNotExist(err) {
+			cmd.LogError("Failure - Unable to create directory...")
 			cmd.LogError(err.Error())
 		}
 
 	} else {
-		cmd.LogInfo("/etc/mysqldumpmanager directory exists")
+		cmd.LogInfo("Success - /etc/mysqldumpmanager directory exists")
 	}
 }
