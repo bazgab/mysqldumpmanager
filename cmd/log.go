@@ -34,6 +34,6 @@ func loggingCmdFunc(cmd *cobra.Command, args []string) {
 		LogError(m)
 	}
 	m := "Command executed successfully"
-	logInfo(m)
-	logInfo("Logged: " + name)
+	LogInfo(m)
+	LogInfo("Logged: " + name)
 }

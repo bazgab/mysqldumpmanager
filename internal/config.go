@@ -26,13 +26,13 @@ func configSetup() {
 		cmd.LogError(err.Error())
 	}
 
-	n := configValues.Name
-	fmt.Println("Name:", n)
-	fmt.Printf("yaml test values file property Age: %v \n", configValues.Age)
+	n := configValues.User
+	fmt.Println("User:", n)
+	fmt.Printf("yaml test values file property Password: %s \n", configValues.Password)
 
 	n1 := os.Getenv("MYSQL_USER")
 	fmt.Println("Using environment variable MYSQL_USER with value: ", n1)
-	err = os.Setenv("TEST_SET_ENV", configValues.Name)
+	err = os.Setenv("TEST_SET_ENV", configValues.User)
 	if err != nil {
 		return
 	}

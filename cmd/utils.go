@@ -40,7 +40,7 @@ func deleteFile(filename string) {
 		LogError(err.Error() + m)
 	} else {
 		m2 := "File successfully deleted"
-		logInfo(m2)
+		LogInfo(m2)
 	}
 }
 
@@ -56,6 +56,6 @@ func executeCommand(cmd []string) {
 	}
 	cmdStr := strings.Join(cmd, " ")
 	m := "Executed command successfully: " + "\"" + cmdStr + "\""
-	logInfo(r.String())
-	logInfo(m)
+	LogInfo(r.String())
+	LogInfo(m)
 }

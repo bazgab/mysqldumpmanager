@@ -17,7 +17,7 @@ func main() {
 	loggingWarnForTest := "Warn test"
 	loggingErrorForTest := "Error test"
 
-	logInfo(loggingInfoForTest)
+	LogInfo(loggingInfoForTest)
 	logWarn(loggingWarnForTest)
 	LogError(loggingErrorForTest)
 	fmt.Println("===================")

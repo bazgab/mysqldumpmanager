@@ -7,8 +7,7 @@ import (
 	"log"
 )
 
-// Log INFO Block
-func logInfo(info string) {
+func LogInfo(info string) {
 
 	c := color.New(color.FgBlue, color.Bold).SprintFunc()
 	p := c("[INFO] ")
@@ -26,7 +25,6 @@ func logInfo(info string) {
 	fmt.Print(&buf)
 }
 
-// Log WARN Block
 func logWarn(warn string) {
 
 	c := color.New(color.FgYellow, color.Bold).SprintFunc()
