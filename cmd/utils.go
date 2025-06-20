@@ -19,12 +19,8 @@ func checkIfFileExists(filename string) bool {
 // CreateFileWithContent Create File:
 // This is going to be used for creating a /etc/bum file for storing .sql dumps
 // and to create the file for storing MySQL credentials so we don't need to prompt password everytime
-func CreateFileWithContent(filename string, content string) {
-	f, err := os.Create(filename)
-	if err != nil {
-		LogError(err.Error())
-	}
-	_, err = f.WriteString(content)
+func CreateFileWithContent(filename string, content []byte) {
+	err := os.WriteFile(filename, content, 0755)
 	if err != nil {
 		LogError(err.Error())
 	}

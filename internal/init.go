@@ -34,6 +34,6 @@ func CreateMySQLDumpManagerDirectory() {
 func createConfigurationFile() {
 	cmd.LogInfo("Creating configuration file...")
 	f := "/etc/mysqldumpmanager/conf.yaml"
-	c := "sample"
+	c := []byte("#Authentication\nuser: root\npassword: rootpasswd\n")
 	cmd.CreateFileWithContent(f, c)
 }
