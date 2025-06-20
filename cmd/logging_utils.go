@@ -25,7 +25,7 @@ func LogInfo(info string) {
 	fmt.Print(&buf)
 }
 
-func logWarn(warn string) {
+func LogWarn(warn string) {
 
 	c := color.New(color.FgYellow, color.Bold).SprintFunc()
 	p := c("[WARN] ")
