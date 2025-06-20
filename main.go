@@ -1,7 +1,11 @@
 package main
 
-import "github.com/bazgab/mysqldumpmanager/cmd"
+import (
+	"github.com/bazgab/mysqldumpmanager/cmd"
+	"github.com/bazgab/mysqldumpmanager/internal"
+)
 
 func main() {
+	internal.CreateMySQLDumpManagerDirectory()
 	cmd.Execute()
 }

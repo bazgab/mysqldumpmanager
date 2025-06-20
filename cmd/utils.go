@@ -51,7 +51,7 @@ func executeCommand(cmd []string) {
 	r := exec.Command(cmd[0], cmd[1:]...)
 	err := r.Run()
 	if err != nil {
-		m := ": Command could not be executed, this can happen if the directory is already created on your system"
+		m := ": Command could not be executed"
 		LogError(err.Error() + m)
 	}
 	cmdStr := strings.Join(cmd, " ")

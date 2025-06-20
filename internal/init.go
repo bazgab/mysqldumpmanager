@@ -1,10 +1,31 @@
 package internal
 
-import "github.com/bazgab/mysqldumpmanager/cmd"
+import (
+	"github.com/bazgab/mysqldumpmanager/cmd"
+	"os"
+)
 
 func initEnvSetup() {
 
 	initConfigMessage := "Initializing configuration for MySQLDumpManager"
 	cmd.LogInfo(initConfigMessage)
 
+}
+
+func CreateMySQLDumpManagerDirectory() {
+	cmd.LogInfo("Creating directory for MySQLDumpManager at /etc/mysqldumpmanager...")
+	err := os.MkdirAll("/etc/mysqldumpmanager", 0755)
+	if err != nil {
+		cmd.LogError(err.Error())
+	}
+
+	// First time checking if directory was created successfully
+	if _, err := os.Stat("/etc/mysqldumpmanager"); err != nil {
+		if os.IsNotExist(err) {
+			cmd.LogError(err.Error())
+		}
+
+	} else {
+		cmd.LogInfo("/etc/mysqldumpmanager directory exists")
+	}
 }
