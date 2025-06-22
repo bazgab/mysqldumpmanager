@@ -7,7 +7,7 @@ import (
 
 func initEnvSetup() {
 
-	initConfigMessage := "Initializing configuration for MySQLDumpManager"
+	initConfigMessage := "Initializing MySQLDumpManager..."
 	cmd.LogInfo(initConfigMessage)
 
 }

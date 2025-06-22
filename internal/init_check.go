@@ -16,3 +16,8 @@ func CheckForMySQLDumpManagerDirectory() {
 		cmd.LogInfo("/etc/mysqldumpmanager/ directory exists")
 	}
 }
+
+func CheckForConfigurationFile() {
+	cmd.LogInfo("Checking for configuration file...")
+	
+}
