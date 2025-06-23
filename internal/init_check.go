@@ -24,6 +24,13 @@ func CheckForMySQLDumpManagerDirectory() {
 
 func CheckForConfigurationFile() {
 	cmd.LogInfo("Checking for configuration file...")
-	f := "/etc/mysqldumpmanager/config.yaml"
-	cmd.CheckIfFileExists(f)
+	f := "/etc/mysqldumpmanager/conf.yaml"
+	if cmd.CheckIfFileExists(f) == false {
+		cmd.LogError("Configuration file does not exist")
+		cmd.LogWarn("/etc/mysqldumpmanager/config.yaml is required, attempting to create it")
+		cmd.LogInfo("Creating /etc/mysqldumpmanager/config.yaml...")
+		createConfigurationFile()
+
+	}
+	cmd.LogInfo("Configuration file exists")
 }
