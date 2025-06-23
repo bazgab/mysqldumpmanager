@@ -6,6 +6,6 @@ import (
 )
 
 func main() {
-	internal.CheckForMySQLDumpManagerDirectory()
+	internal.InitCheckEntryPoint()
 	cmd.Execute()
 }
