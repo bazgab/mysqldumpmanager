@@ -5,6 +5,11 @@ import (
 	"os"
 )
 
+func InitCheckEntryPoint() {
+	CheckForMySQLDumpManagerDirectory()
+	CheckForConfigurationFile()
+}
+
 func CheckForMySQLDumpManagerDirectory() {
 	cmd.LogInfo("Checking for MySQLDumpManager directory...")
 	p := "/etc/mysqldumpmanager/"
@@ -19,5 +24,6 @@ func CheckForMySQLDumpManagerDirectory() {
 
 func CheckForConfigurationFile() {
 	cmd.LogInfo("Checking for configuration file...")
-	
+	f := "/etc/mysqldumpmanager/config.yaml"
+	cmd.CheckIfFileExists(f)
 }

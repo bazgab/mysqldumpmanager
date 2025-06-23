@@ -5,13 +5,6 @@ import (
 	"os"
 )
 
-func initEnvSetup() {
-
-	initConfigMessage := "Initializing MySQLDumpManager..."
-	cmd.LogInfo(initConfigMessage)
-
-}
-
 func CreateMySQLDumpManagerDirectory() {
 	cmd.LogInfo("Creating directory for MySQLDumpManager at /etc/mysqldumpmanager...")
 	err := os.MkdirAll("/etc/mysqldumpmanager", 0755)
@@ -34,6 +27,6 @@ func CreateMySQLDumpManagerDirectory() {
 func createConfigurationFile() {
 	cmd.LogInfo("Creating configuration file...")
 	f := "/etc/mysqldumpmanager/conf.yaml"
-	c := []byte("#Authentication\nuser: root\npassword: rootpasswd\n")
+	c := []byte("#Authentication\nuser: \npassword: \n")
 	cmd.CreateFileWithContent(f, c)
 }

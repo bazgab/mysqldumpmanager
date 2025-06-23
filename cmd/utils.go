@@ -6,9 +6,7 @@ import (
 	"strings"
 )
 
-// In this section we will just declare some basic util functions to aid file and directory management.
-// Check if file exists
-func checkIfFileExists(filename string) bool {
+func CheckIfFileExists(filename string) bool {
 	_, err := os.Stat(filename)
 	if os.IsNotExist(err) {
 		return false
