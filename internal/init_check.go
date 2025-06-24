@@ -8,6 +8,7 @@ import (
 func InitCheckEntryPoint() {
 	CheckForMySQLDumpManagerDirectory()
 	CheckForConfigurationFile()
+
 }
 
 func CheckForMySQLDumpManagerDirectory() {
