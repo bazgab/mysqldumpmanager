@@ -1,7 +1,6 @@
 package internal
 
 import (
-	"fmt"
 	"github.com/bazgab/mysqldumpmanager/cmd"
 	"gopkg.in/yaml.v3"
 	"os"
@@ -12,7 +11,6 @@ type Config struct {
 	Password string `yaml:"password"`
 }
 
-// TODO: properly implement config file creation on init.go file
 func configSetup() {
 	var configValues Config
 
@@ -26,22 +24,22 @@ func configSetup() {
 		cmd.LogError(err.Error())
 	}
 
-	n := configValues.User
-	fmt.Println("User:", n)
-	fmt.Printf("yaml test values file property Password: %s \n", configValues.Password)
+	u := configValues.User
+	p := configValues.Password
+	cmd.LogInfo("Fetching data from conf.yaml...")
+	cmd.LogInfo("User: " + u)
+	cmd.LogInfo("Password: " + p)
 
-	n1 := os.Getenv("MYSQL_USER")
-	fmt.Println("Using environment variable MYSQL_USER with value: ", n1)
-	err = os.Setenv("TEST_SET_ENV", configValues.User)
+	err = os.Setenv("MYSQLDUMPMANAGER_USER", configValues.User)
 	if err != nil {
-		return
+		cmd.LogError(err.Error())
 	}
-	fmt.Println("Setting up environment variable TEST_SET_ENV using yamltest.yaml, value: ", os.Getenv("TEST_SET_ENV"))
+	cmd.LogInfo("Setting up environment variable MYSQLDUMPMANAGER_USER with value: " + os.Getenv("MYSQLDUMPMANAGER_USER"))
 
-}
-
-// TODO: Create a method for checking if config files are being properly handled.
-func checkConfigFile() {
-	// This function will check if the config file is present, for testing we need to create something on the tests pkg.
+	err = os.Setenv("MYSQLDUMPMANAGER_PASSWORD", configValues.Password)
+	if err != nil {
+		cmd.LogError(err.Error())
+	}
+	cmd.LogInfo("Setting up environment variable MYSQLDUMPMANAGER_PASSWORD with value: " + os.Getenv("MYSQLDUMPMANAGER_PASSWORD"))
 
 }

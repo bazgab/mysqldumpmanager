@@ -27,3 +27,11 @@ func updateCmdFunc(cmd *cobra.Command, args []string) {
 	fmt.Println(p, "Looking for conf.yaml and updating MySQLDumpManager")
 
 }
+
+func fetchYamlConfig() {
+
+}
+
+func pushYamlConfig() {
+
+}
