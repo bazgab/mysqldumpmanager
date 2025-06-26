@@ -70,10 +70,10 @@ func updateCmdFunc(cmd *cobra.Command, args []string) {
 	m2 := []byte("\npassword: ")
 	m3 := []byte("\n")
 	// Now we have to append in groups and then finally append it all together
-	firstAppend := append(m, uByte...)
-	SecondAppend := append(m2, pByte...)
-	ThirdByteAppend := append(firstAppend, SecondAppend...)
-	fByteAppend := append(ThirdByteAppend, m3...)
+	a1 := append(m, uByte...)
+	a2 := append(m2, pByte...)
+	a3 := append(a1, a2...)
+	fByteAppend := append(a3, m3...)
 	f, err := os.Create("/etc/my.cnf.d/mysqldump.cnf")
 	if err != nil {
 		LogError(err.Error())
