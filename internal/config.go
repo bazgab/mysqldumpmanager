@@ -1,17 +1,13 @@
 package internal
 
-import (
-	"github.com/bazgab/mysqldumpmanager/cmd"
-	"gopkg.in/yaml.v3"
-	"os"
-)
-
+/*
 type Config struct {
 	User     string `yaml:"user"`
 	Password string `yaml:"password"`
 }
 
-func configSetup() {
+
+func ConfigSetup() {
 	var configValues Config
 
 	yamlFile, err := os.ReadFile("/etc/mysqldumpmanager/conf.yaml")
@@ -42,4 +38,29 @@ func configSetup() {
 	}
 	cmd.LogInfo("Setting up environment variable MYSQLDUMPMANAGER_PASSWORD with value: " + os.Getenv("MYSQLDUMPMANAGER_PASSWORD"))
 
+	c := []byte("\n[mysqldump]\nuser: " +
+		os.Getenv("MYSQLDUMPMANAGER_USER") +
+		"\npassword: " +
+		os.Getenv("MYSQLDUMPMANAGER_PASSWORD"))
+
+	f1 := "/etc/my.cnf"
+	f2 := "/etc/mysql/my.cnf"
+	f3 := "~/.my.cnf"
+	f4 := os.Getenv("MYSQL_HOME") + "/.my.cnf"
+
+	fileLocationLoop := []string{f1, f2, f3, f4}
+
+	for _, fileLocation := range fileLocationLoop {
+		if cmd.CheckIfFileExists(fileLocation) == false {
+			cmd.LogWarn("File " + fileLocation + " does not exist...")
+		}
+		err = os.WriteFile(fileLocation, c, 0644)
+		if err != nil {
+			cmd.LogError(err.Error())
+		}
+	}
+
 }
+
+
+*/
