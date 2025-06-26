@@ -83,7 +83,6 @@ func updateCmdFunc(cmd *cobra.Command, args []string) {
 		LogError(err.Error())
 	}
 	LogInfo("Created/Updated /etc/my.cnf.d/mysqldump.cnf")
-	LogWarn("Make sure your system wide my.cnf includes looking for configuration on /etc/my.cnf.d/")
 	err = f.Close()
 	if err != nil {
 		LogError(err.Error())
