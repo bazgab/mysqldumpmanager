@@ -20,9 +20,7 @@ func init() {
 
 func initFunc(cmd *cobra.Command, args []string) {
 
-}
-
-func CheckForMySQLDumpManagerDirectory() {
+	// Checking for MySQLDumpManager Directory
 	LogInfo("Checking for MySQLDumpManager directory...")
 	p := "/etc/mysqldumpmanager/"
 	if _, err := os.Stat(p); os.IsNotExist(err) {
@@ -32,9 +30,8 @@ func CheckForMySQLDumpManagerDirectory() {
 	} else {
 		LogInfo("/etc/mysqldumpmanager/ directory exists")
 	}
-}
 
-func CheckForConfigurationFile() {
+	// Then check for the configuration file
 	LogInfo("Checking for configuration file...")
 	f := "/etc/mysqldumpmanager/conf.yaml"
 	if CheckIfFileExists(f) == false {
@@ -45,6 +42,7 @@ func CheckForConfigurationFile() {
 
 	}
 	LogInfo("Configuration file exists")
+	LogInfo("Success - Init check completed. Run 'mysqldumpmanager --help' for usage.")
 }
 
 func CreateMySQLDumpManagerDirectory() {
