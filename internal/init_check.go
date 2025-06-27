@@ -1,5 +1,6 @@
 package internal
 
+/*
 import (
 	"github.com/bazgab/mysqldumpmanager/cmd"
 	"os"
@@ -10,6 +11,7 @@ func InitCheckEntryPoint() {
 	CheckForConfigurationFile()
 
 }
+
 
 func CheckForMySQLDumpManagerDirectory() {
 	cmd.LogInfo("Checking for MySQLDumpManager directory...")
@@ -61,3 +63,5 @@ func createConfigurationFile() {
 	c := []byte("#Authentication\nuser:\npassword:\n")
 	cmd.CreateFileWithContent(f, c)
 }
+
+*/
