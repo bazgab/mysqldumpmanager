@@ -44,12 +44,12 @@ func createCmdFunc(cmd *cobra.Command, args []string) {
 	}
 
 	// Verify the new working directory
-	newDir, err := os.Getwd()
+	wd, _ := os.Getwd()
 	if err != nil {
-		fmt.Println("Error getting new directory:", err)
-		return
+		LogError(err.Error())
 	}
-	fmt.Println("New working directory:", newDir)
+	fmt.Println("Working directory: " + wd)
+
 	// Execute mysqldump command
 
 }
