@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/fatih/color"
 	"github.com/spf13/cobra"
+	"os"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -12,7 +12,7 @@ var createCmd = &cobra.Command{
 	Short: "Creates a dump",
 	Long: `Creates a dump. 
 
-By default, dumps are located in /etc/mysqldumpmanager/dumps/`,
+Dumps are located in /etc/mysqldumpmanager/dumps/`,
 	Run: createCmdFunc,
 }
 
@@ -34,8 +34,22 @@ func createCmdFunc(cmd *cobra.Command, args []string) {
 		}
 	*/
 
-	c := color.New(color.FgBlue, color.Bold).SprintFunc()
-	p := c("[INFO] ")
-	fmt.Println(p, "Command successfully executed.")
+	// Change directory
+
+	// Change the working directory
+
+	err := os.Chdir("/etc/mysqldumpmanager/dumps")
+	if err != nil {
+		LogError("Couldn't change directories" + err.Error())
+	}
+
+	// Verify the new working directory
+	newDir, err := os.Getwd()
+	if err != nil {
+		fmt.Println("Error getting new directory:", err)
+		return
+	}
+	fmt.Println("New working directory:", newDir)
+	// Execute mysqldump command
 
 }

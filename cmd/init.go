@@ -21,17 +21,19 @@ func init() {
 func initFunc(cmd *cobra.Command, args []string) {
 
 	// Checking for MySQLDumpManager Directory
+
 	LogInfo("Checking for MySQLDumpManager directory...")
 	p := "/etc/mysqldumpmanager/"
 	if _, err := os.Stat(p); os.IsNotExist(err) {
 		LogWarn("/etc/mysqldumpmanager/ directory does not exist")
 		LogInfo("Attempting to create /etc/mysqldumpmanager/ directory...")
-		CreateMySQLDumpManagerDirectory()
+		CreateDirectory(p)
 	} else {
 		LogInfo("/etc/mysqldumpmanager/ directory exists")
 	}
 
 	// Then check for the configuration file
+
 	LogInfo("Checking for configuration file...")
 	f := "/etc/mysqldumpmanager/conf.yaml"
 	if CheckIfFileExists(f) == false {
@@ -42,12 +44,25 @@ func initFunc(cmd *cobra.Command, args []string) {
 
 	}
 	LogInfo("Configuration file exists")
+
+	// Check for dumps directory
+
+	LogInfo("Checking for /etc/mysqldumpmanager/dumps directory...")
+	d := "/etc/mysqldumpmanager/dumps"
+	if _, err := os.Stat(d); os.IsNotExist(err) {
+		LogWarn("/etc/mysqldumpmanager/dumps directory does not exist")
+		LogInfo("Attempting to create /etc/mysqldumpmanager/dumps directory...")
+		CreateDirectory(d)
+	} else {
+		LogInfo("/etc/mysqldumpmanager/dumps directory exists")
+	}
+
 	LogInfo("Success - Init check completed. Run 'mysqldumpmanager --help' for usage.")
 }
 
-func CreateMySQLDumpManagerDirectory() {
-	LogInfo("Creating directory for MySQLDumpManager at /etc/mysqldumpmanager...")
-	err := os.MkdirAll("/etc/mysqldumpmanager", 0755)
+func CreateDirectory(filepath string) {
+	LogInfo("Creating directory " + filepath)
+	err := os.MkdirAll(filepath, 0755)
 	if err != nil {
 		LogError(err.Error())
 	}
