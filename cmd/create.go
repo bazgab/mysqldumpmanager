@@ -1,7 +1,6 @@
 package cmd
 
 import (
-	"fmt"
 	"github.com/spf13/cobra"
 	"os"
 )
@@ -26,29 +25,20 @@ func init() {
 }
 
 func createCmdFunc(cmd *cobra.Command, args []string) {
-	/*
-		if err != nil {
-			c := color.New(color.FgRed, color.Bold).SprintFunc()
-			p := c("[ERROR] ")
-			fmt.Println(p, "Command failed to execute")
-		}
-	*/
 
 	// Change directory
-
-	// Change the working directory
-
-	err := os.Chdir("/etc/mysqldumpmanager/dumps")
+	dFilePath := "/etc/mysqldumpmanager/dumps/"
+	err := os.Chdir(dFilePath)
 	if err != nil {
-		LogError("Couldn't change directories" + err.Error())
+		LogError("Couldn't change directory: " + err.Error())
 	}
 
-	// Verify the new working directory
-	wd, _ := os.Getwd()
+	// Validate
+	wDir, _ := os.Getwd()
 	if err != nil {
-		LogError(err.Error())
+		LogError("Couldn't change working directory: " + err.Error())
 	}
-	fmt.Println("Working directory: " + wd)
+	LogInfo("Working directory: " + wDir)
 
 	// Execute mysqldump command
 
