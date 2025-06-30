@@ -3,6 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"os"
+	"strings"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -38,8 +39,13 @@ func createCmdFunc(cmd *cobra.Command, args []string) {
 	if err != nil {
 		LogError("Couldn't change working directory: " + err.Error())
 	}
-	LogInfo("Working directory: " + wDir)
+	LogInfo("Setting Working directory as: " + wDir)
 
-	// Execute mysqldump command
+	// Execute mysqldump for tests
+	dCmd := []string{"mysqldump", "test_db", ">", "test-dump1.sql"}
+	cmdStr := strings.Join(dCmd, " ")
+
+	executeCommand(cmdStr)
+	LogInfo("Executed command: " + cmdStr)
 
 }

@@ -3,7 +3,6 @@ package cmd
 import (
 	"os"
 	"os/exec"
-	"strings"
 )
 
 func CheckIfFileExists(filename string) bool {
@@ -32,16 +31,15 @@ func deleteFile(filename string) {
 	}
 }
 
-func executeCommand(cmd []string) {
+func executeCommand(cmd string) {
 
-	r := exec.Command(cmd[0], cmd[1:]...)
+	r := exec.Command(cmd)
 	err := r.Run()
 	if err != nil {
 		m := ": Command could not be executed"
 		LogError(err.Error() + m)
 	}
-	cmdStr := strings.Join(cmd, " ")
-	m := "Executed command successfully: " + "\"" + cmdStr + "\""
+	m := "Executed command successfully: " + "\"" + cmd + "\""
 	LogInfo(r.String())
 	LogInfo(m)
 }
