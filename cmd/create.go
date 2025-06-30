@@ -41,8 +41,9 @@ func createCmdFunc(cmd *cobra.Command, args []string) {
 	}
 	LogInfo("Setting Working directory as: " + wDir)
 
-	// Execute mysqldump for tests
-	dCmd := []string{"mysqldump", "test_db", ">", "test-dump1.sql"}
+	// Testing
+	// TODO: Fix functionality on the mysqldump executable (/usr/bin/mysql)
+	dCmd := []string{"/usr/bin/mysqldump", "test_db", ">", "test-dump1.sql"}
 	cmdStr := strings.Join(dCmd, " ")
 
 	executeCommand(cmdStr)
