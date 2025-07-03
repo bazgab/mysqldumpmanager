@@ -42,8 +42,6 @@ func initFunc(cmd *cobra.Command, args []string) {
 		LogInfo("/etc/mysqldumpmanager/ directory exists")
 	}
 
-	// Then check for the configuration file
-
 	LogInfo("Checking for configuration file...")
 	f := "/etc/mysqldumpmanager/conf.yaml"
 	if CheckIfFileExists(f) == false {
@@ -54,8 +52,6 @@ func initFunc(cmd *cobra.Command, args []string) {
 
 	}
 	LogInfo("Configuration file exists")
-
-	// Check for dumps directory
 
 	LogInfo("Checking for /etc/mysqldumpmanager/dumps directory...")
 	d := "/etc/mysqldumpmanager/dumps"
