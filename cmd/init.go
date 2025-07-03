@@ -1,3 +1,15 @@
+/*
+
+	This command is meant to be run only once, during first startup of the program. It does the following things
+	in order:
+		1. Check for the right directory/configuration file
+		2. If it's not present, creates the missing directories/files
+
+	An improvement we could make is to have a different output if the "mysqldumpmanager init" command has already
+	been executed before, instead of outputting the check like a first time startup.
+
+*/
+
 package cmd
 
 import (
@@ -19,8 +31,6 @@ func init() {
 }
 
 func initFunc(cmd *cobra.Command, args []string) {
-
-	// Checking for MySQLDumpManager Directory
 
 	LogInfo("Checking for MySQLDumpManager directory...")
 	p := "/etc/mysqldumpmanager/"
@@ -67,7 +77,6 @@ func CreateDirectory(filepath string) {
 		LogError(err.Error())
 	}
 
-	// First time checking if directory was created successfully
 	if _, err := os.Stat("/etc/mysqldumpmanager"); err != nil {
 		if os.IsNotExist(err) {
 			LogError("Failure - Unable to create directory...")
