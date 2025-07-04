@@ -10,6 +10,8 @@
 
 */
 
+// TODO: Change the 'mysql' string literals to 'mariadb'
+
 package cmd
 
 import (
