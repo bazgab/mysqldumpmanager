@@ -3,7 +3,7 @@ package cmd
 import (
 	"github.com/spf13/cobra"
 	"os"
-	"strings"
+	"os/exec"
 )
 
 // rootCmd represents the base command when called without any subcommands
@@ -19,7 +19,14 @@ Dumps are located in /etc/mysqldumpmanager/dumps/`,
 func init() {
 	rootCmd.AddCommand(createCmd)
 	createCmd.Flags().StringP("file", "F", "", "file name to write dump to (required)")
+	createCmd.Flags().StringP("database", "D", "", "database to dump (required)")
+	// Marking as required
 	err := createCmd.MarkFlagRequired("file")
+	if err != nil {
+		LogError(err.Error())
+	}
+
+	err = createCmd.MarkFlagRequired("database")
 	if err != nil {
 		LogError(err.Error())
 	}
@@ -42,10 +49,19 @@ func createCmdFunc(cmd *cobra.Command, args []string) {
 	LogInfo("Setting Working directory as: " + wDir)
 
 	// TODO: Fix functionality on the mysqldump executable (/usr/bin/mysql)
-	dCmd := []string{"bash", "-c", "mariadb-dump mariadb_test > test-dump1.sql"}
-	cmdStr := strings.Join(dCmd, " ")
 
-	executeCommand(cmdStr)
-	LogInfo("Executed command: " + cmdStr)
+	cmdStr := "mariadb-dump mariadb_test > test-dump1.sql"
+	LogInfo("Executing: " + cmdStr)
+	c := exec.Command("/bin/sh", "-c", "mariadb-dump mariadb_test > test-dump1.sql")
+
+	var stdout []byte
+	stdout, err = c.Output()
+
+	if err != nil {
+		LogError(err.Error())
+	}
+
+	// Print the output
+	LogInfo(string(stdout))
 
 }
