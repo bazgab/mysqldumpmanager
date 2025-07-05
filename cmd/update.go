@@ -41,11 +41,7 @@ func updateCmdFunc(cmd *cobra.Command, args []string) {
 		LogError(err.Error())
 	}
 
-	u := configValues.User
-	p := configValues.Password
 	LogInfo("Fetching data from conf.yaml...")
-	LogInfo("User: " + u)
-	LogInfo("Password: " + p)
 
 	err = os.Setenv("MYSQLDUMPMANAGER_USER", configValues.User)
 	if err != nil {
@@ -66,15 +62,15 @@ func updateCmdFunc(cmd *cobra.Command, args []string) {
 	uByte := []byte(UserVariableString)
 	pByte := []byte(PasswordVariableString)
 
-	m := []byte("\n[mysqldump]\nuser: ")
-	m2 := []byte("\npassword: ")
+	m := []byte("\n[mariadb-dump]\nuser= ")
+	m2 := []byte("\npassword= ")
 	m3 := []byte("\n")
 	// Now we have to append in groups and then finally append it all together
 	a1 := append(m, uByte...)
 	a2 := append(m2, pByte...)
 	a3 := append(a1, a2...)
 	fByteAppend := append(a3, m3...)
-	f, err := os.Create("/etc/my.cnf.d/mysqldump.cnf")
+	f, err := os.Create("/etc/my.cnf.d/mariadb-dump.cnf")
 	if err != nil {
 		LogError(err.Error())
 	}
@@ -82,7 +78,7 @@ func updateCmdFunc(cmd *cobra.Command, args []string) {
 	if err != nil {
 		LogError(err.Error())
 	}
-	LogInfo("Created/Updated /etc/my.cnf.d/mysqldump.cnf")
+	LogInfo("Created/Updated /etc/my.cnf.d/mariadb-dump.cnf")
 	err = f.Close()
 	if err != nil {
 		LogError(err.Error())

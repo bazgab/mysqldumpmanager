@@ -55,11 +55,11 @@ func initFunc(cmd *cobra.Command, args []string) {
 	}
 	LogInfo("Configuration file exists")
 
-	LogInfo("Checking for /etc/mysqldumpmanager/dumps directory...")
+	LogInfo("Checking for etc/mysqldumpmanager/dumps directory...")
 	d := "/etc/mysqldumpmanager/dumps"
 	if _, err := os.Stat(d); os.IsNotExist(err) {
 		LogWarn("/etc/mysqldumpmanager/dumps directory does not exist")
-		LogInfo("Attempting to create /etc/mysqldumpmanager/dumps directory...")
+		LogInfo("Attempting to create /etc/mysqldumpmanager/dumps...")
 		CreateDirectory(d)
 	} else {
 		LogInfo("/etc/mysqldumpmanager/dumps directory exists")
@@ -75,20 +75,20 @@ func CreateDirectory(filepath string) {
 		LogError(err.Error())
 	}
 
-	if _, err := os.Stat("/etc/mysqldumpmanager"); err != nil {
+	if _, err := os.Stat(filepath); err != nil {
 		if os.IsNotExist(err) {
 			LogError("Failure - Unable to create directory...")
 			LogError(err.Error())
 		}
 
 	} else {
-		LogInfo("Success - /etc/mysqldumpmanager directory exists")
+		LogInfo("Success - directory exists")
 	}
 }
 
 func createConfigurationFile() {
 	LogInfo("Creating configuration file...")
 	f := "/etc/mysqldumpmanager/conf.yaml"
-	c := []byte("#Authentication\nuser:\npassword:\n")
+	c := []byte("#Authentication\nuser=\npassword=\n")
 	CreateFileWithContent(f, c)
 }
