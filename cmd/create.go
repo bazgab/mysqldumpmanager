@@ -34,6 +34,7 @@ func init() {
 
 func createCmdFunc(cmd *cobra.Command, args []string) {
 
+	// TODO: Test if it works on /etc/
 	// Change directory
 	dFilePath := os.Getenv("HOME") + "/mysqldumpmanager/test-dumps"
 	err := os.Chdir(dFilePath)
@@ -47,8 +48,6 @@ func createCmdFunc(cmd *cobra.Command, args []string) {
 		LogError("Couldn't change working directory: " + err.Error())
 	}
 	LogInfo("Setting Working directory as: " + wDir)
-
-	// TODO: Fix functionality on the mysqldump executable (/usr/bin/mysql)
 
 	cmdStr := "mariadb-dump mariadb_test > test-dump1.sql"
 	LogInfo("Executing: " + cmdStr)
